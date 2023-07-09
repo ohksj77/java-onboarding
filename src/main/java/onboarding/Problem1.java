@@ -87,7 +87,7 @@ class MaxScoreProvider {
 
     public int getMaxScore() {
         int sumMax = getMaxScoreOfPages(calculate(left, sumCalculator), calculate(right, multiplyCalculator));
-        int multiplyMax = getMaxScoreOfPages(sumCalculator.calculate(left), multiplyCalculator.calculate(right));
+        int multiplyMax = getMaxScoreOfPages(calculate(left, sumCalculator), calculate(right, multiplyCalculator));
         return Math.max(sumMax, multiplyMax);
     }
 
