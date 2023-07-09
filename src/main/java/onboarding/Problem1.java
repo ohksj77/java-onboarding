@@ -87,7 +87,7 @@ class MaxScoreProvider {
 
     public int getMaxScore() {
         int sumMax = getMaxScoreOfPages(calculate(left, sumCalculator), calculate(right, multiplyCalculator));
-        int multiplyMax = getMaxScoreOfPages(getMultiplyOfNum(left), getMultiplyOfNum(right));
+        int multiplyMax = getMaxScoreOfPages(sumCalculator.calculate(left), multiplyCalculator.calculate(right));
         return Math.max(sumMax, multiplyMax);
     }
 
@@ -97,12 +97,6 @@ class MaxScoreProvider {
 
     private int calculate(final int num, final Calculator calculator) {
         return calculator.calculate(num);
-    }
-
-    private int getMultiplyOfNum(final int num) {
-        return getIntStreamByNum(num)
-                .reduce((l, r) -> l * r)
-                .orElseThrow(IllegalStateException::new);
     }
 
     private IntStream getIntStreamByNum(final int num) {
